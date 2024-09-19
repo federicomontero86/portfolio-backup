@@ -8,18 +8,16 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 import { experiencesData } from "@/lib/data";
-import { useSectionInView } from "@/lib/hooks";
 import { useThemeContext } from "@/context/ThemeContext";
 
 import SectionHeading from "./SectionHeading";
-// import { useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 export default function Experience() {
-  //   const { ref, inView } = useInView({
-  //     triggerOnce: true,
-  //   });
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
 
-  const { ref } = useSectionInView("Experience");
   const { theme } = useThemeContext();
 
   return (
@@ -50,7 +48,7 @@ export default function Experience() {
                   theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
                 fontSize: "1.5rem",
               }}
-              visible={true}
+              visible={inView}
             >
               <h3 className="font-semibold capitalize">{item.title}</h3>
               <p className="font-normal !mt-0">{item.location}</p>
